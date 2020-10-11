@@ -1,0 +1,538 @@
+/**
+ * Copyright (c) 2020 Terence Liu (Phoenix Co, Ltd)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+[WMI,
+ Dynamic,
+ Provider("WmiProv"),
+ Locale("MS\\0x409"),
+ Description("Class used to operate methods on a ULong"),
+ guid("{5f3000cf-c24c-46d3-b00e-512a2177a19b}")
+]
+class QUANTA_MFG_DATA_ULONG
+{
+  [key, read]
+   string InstanceName;
+  [read] boolean Active;   
+	
+  // Network Boot
+  // -RNB
+	[WmiMethodId(1),
+     Implemented,
+     read, write,
+     MaxLen(1),
+     Description("Get Network Boot")
+		] void GetNetWorkBoot ([out, Description("Network Boot Status")] uint8 Data);			
+		
+  // -WNB
+	[WmiMethodId(2),
+     Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Set Network Boot")
+	] void SetNetWorkBoot ([in, Description("Network Boot Status")] uint8 idx);		
+ 
+  // Default fTPM Status
+  // -RSR
+	[WmiMethodId(3),
+     Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Get Default fTPM Status")
+		] void GetfTPMStatus ([out, Description("Default fTPM Status")] uint8 Data);			
+	// -WSR	
+	[WmiMethodId(4),
+     Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Set Default fTPM Status")
+	] void SetfTPMStatus ([in, Description("Default fTPM Status")] uint8 idx);	
+  // K/B Print Type
+  // -RKB
+	[WmiMethodId(5),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Get K/B Print Type")
+		] void GetKeyboardPrint ([out, Description("K/B Print Type")] uint8 Data);			
+		
+  // -WKB
+	[WmiMethodId(6),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Set K/B Print Type")
+	] void SetKeyboardPrint ([in, Description("K/B Print Type")] uint8 idx);		
+  // Manufacture Mode 
+  // -RMM
+	[WmiMethodId(7),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Get Manufacture Mode")
+		] void GetManufactureMode ([out, Description("Manufacture Mode")] uint8 Data);			
+		
+  // -WMM
+	[WmiMethodId(8),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Set Manufacture Mode")
+	] void SetManufactureMode ([in, Description("Manufacture Mode")] uint8 idx);		  
+  // Shipping TW mode
+  // -RSHIP
+	[WmiMethodId(9),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Get Shipping TW mode")
+		] void GetShippingTWMode ([out, Description("Shipping TW mode")] uint8 Data);			
+		
+  // -WSHIP
+	[WmiMethodId(10),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Set Shipping TW mode")
+	] void SetShippingTWMode ([in, Description("Shipping TW mode")] uint8 idx);		  
+   // Product Line Image DL
+  // -RPLID
+	[WmiMethodId(11),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Get Product Line Image DL")
+		] void GetProductLineImageDL ([out, Description("Product Line Image DL")] uint8 Data);			
+		
+  // -WPLID
+	[WmiMethodId(12),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Set Product Line Image DL")
+	] void SetProductLineImageDL ([in, Description("Product Line Image DL")] uint8 idx);		  
+  
+  // Touchpad Vendor
+  // -RPV
+	[WmiMethodId(13),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Get Touchpad Vendor")
+		] void GetTouchPadVendor ([out, Description("Touchpad Vendor")] uint8 Data);			
+		
+  // -WPV
+	[WmiMethodId(14),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Set Touchpad Vendor")
+	] void SetTouchPadVendor ([in, Description("Touchpad Vendor")] uint8 idx);		  
+  
+  // Simulate DC State
+  // -RSDC
+	[WmiMethodId(15),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Get Simulate DC State")
+		] void GetSimulateDCState ([out, Description("Simulate DC State")] uint8 Data);			
+		
+  // -WSDC
+	[WmiMethodId(16),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Set Simulate DC State")
+	] void SetSimulateDCState ([in, Description("Simulate DC State")] uint8 idx);		  
+
+  /// new add on 8/24
+  // Disk Index
+  // -RDI
+	[WmiMethodId(17),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("read Disk Index")
+		] void GetDiskIndex ([out, Description("Disk Index")] uint8 Data);			
+		
+  // -WDI
+	[WmiMethodId(18),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Write Disk Index")
+	] void SetDiskIndex ([in, Description("Disk Index")] uint8 idx);		  
+
+  // D1 D/L Flag
+  // -RDLF
+	[WmiMethodId(19),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Read D1 D/L Flag")
+		] void GetD1DLFlag ([out, Description("D1 D/L Flag")] uint8 Data);			
+		
+  // -WDLF
+	[WmiMethodId(20),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("Write D1 D/L Flag")
+	] void SetD1DLFlag ([in, Description("D1 D/L Flag")] uint8 idx);		  
+
+  // CSP QA flag
+  // -RCSP
+	[WmiMethodId(21),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("The eeprom written and CSP QA flag")
+		] void GetCSPOA ([out, Description("The eeprom written and CSP QA flag")] uint8 Data);			
+		
+  // -WCSP 
+	[WmiMethodId(22),
+		Implemented,
+     read, write,
+     MaxLen(1),
+		Description("-> The eeprom written and CSP QA flag")
+	] void SetCSPOA ([in, Description("The eeprom written and CSP QA flag")] uint8 idx);		  
+  [WmiMethodId(23),
+  Implemented,
+  read, write,
+  Description("Get UUID")
+  ] void GetUUID ([out, Description("UUID")] uint32 first,
+                  [out, Description("UUID")] uint16 second,
+                  [out, Description("UUID")] uint16 third,
+                  [out, Description("UUID")] uint16 fourth,
+                  [out, Description("UUID")] uint8 one1,
+                  [out, Description("UUID")] uint8 one2,
+                  [out, Description("UUID")] uint8 one3,
+                  [out, Description("UUID")] uint8 one4,
+                  [out, Description("UUID")] uint8 one5,
+                  [out, Description("UUID")] uint8 one6
+                  );	  
+  // -WUU   //// application 32->16
+  [WmiMethodId(24),
+  Implemented,
+  read, write,
+  Description("Set UUID")
+  ] void SetUUID ([in, Description("UUID")] uint32 first,
+                  [in, Description("UUID")] uint16 second,
+                  [in, Description("UUID")] uint16 third,
+                  [in, Description("UUID")] uint16 fourth,
+                  [in, Description("UUID")] uint8 one1,
+                  [in, Description("UUID")] uint8 one2,
+                  [in, Description("UUID")] uint8 one3,
+                  [in, Description("UUID")] uint8 one4,
+                  [in, Description("UUID")] uint8 one5,
+                  [in, Description("UUID")] uint8 one6
+                  );	  
+
+
+  /// new add on 8/24
+  // WLAN MAC ID(Max 12 characters) --> 6 bytes
+  // -RWLAN
+  [WmiMethodId(25),
+  Implemented,
+  read, write,
+  Description("Read WLAN MAC ID")
+  ] void GetWLANMacID (
+          [out, Description(" mac id data ")] uint8 bData1,
+          [out, Description(" mac id data ")] uint8 bData2,
+          [out, Description(" mac id data ")] uint8 bData3,
+          [out, Description(" mac id data ")] uint8 bData4,
+          [out, Description(" mac id data ")] uint8 bData5,
+          [out, Description(" mac id data ")] uint8 bData6
+        );			
+		
+  // -WWLAN 
+  [WmiMethodId(26),
+  Implemented,
+  read, write,
+  Description("Write WLAN MAC ID(Max 12 characters)")
+  ] void SetWLANMacID (
+    [in, Description(" mac id data ")] uint8 bData1,
+    [in, Description(" mac id data ")] uint8 bData2,
+    [in, Description(" mac id data ")] uint8 bData3,
+    [in, Description(" mac id data ")] uint8 bData4,
+    [in, Description(" mac id data ")] uint8 bData5,
+    [in, Description(" mac id data ")] uint8 bData6
+    );	  
+
+  // BT MAC ID(Max 12 characters) --> 6 bytes
+  // -RBTID
+  [WmiMethodId(27),
+  Implemented,
+  read, write,
+  Description("Read BT MAC ID")
+  ] void GetBTMacID (
+          [out, Description(" mac id data ")] uint8 bData1,
+          [out, Description(" mac id data ")] uint8 bData2,
+          [out, Description(" mac id data ")] uint8 bData3,
+          [out, Description(" mac id data ")] uint8 bData4,
+          [out, Description(" mac id data ")] uint8 bData5,
+          [out, Description(" mac id data ")] uint8 bData6
+          );			
+		
+  // -WBTID 
+  [WmiMethodId(28),
+  Implemented,
+  read, write,
+  Description("Write BT MAC ID (Max 12 characters)")
+  ] void SetBTMacID (
+    [in, Description(" mac id data ")] uint8 bData1,
+    [in, Description(" mac id data ")] uint8 bData2,
+    [in, Description(" mac id data ")] uint8 bData3,
+    [in, Description(" mac id data ")] uint8 bData4,
+    [in, Description(" mac id data ")] uint8 bData5,
+    [in, Description(" mac id data ")] uint8 bData6      
+    );	  
+
+  // Read EC RAM
+  [WmiMethodId(29),
+  Implemented,
+  read, write,
+  Description("Read EC RAM data by Index")
+  ] void ReadEcRam (
+    [in, Description(" EC Ram Index")] uint8 Index,
+    [out, Description(" Data returned from EC ")] uint8 Data
+    );	  
+
+  // Write EC RAM
+  [WmiMethodId(30),
+  Implemented,
+  read, write,
+  Description("Write EC RAM by Index and along with properly data")
+  ] void WriteEcRam (
+    [in, Description(" EC Ram Index")] uint8 Index,
+    [in, Description(" Data written from EC ")] uint8 Data
+    );	  
+
+  // Read EC Mailbox
+  [WmiMethodId(31),
+  Implemented,
+  read, write,
+  Description("Read EC Mailbox by Index")
+  ] void ReadEcMailbox (
+    [in, Description(" EC email Index")] uint8 Index,
+    [out, Description(" Data returned from EC ")] uint8 Data
+    );	  
+  // Write EC Mailbox
+  [WmiMethodId(32),
+  Implemented,
+  read, write,
+  Description("Write EC mailbox data by Index")
+  ] void WriteEcMailbox (
+    [in, Description(" EC email Index")] uint8 Index,
+    [in, Description(" Data write to EC mailbox")] uint8 Data
+    );	  
+
+  // Write EC command one byte
+  [WmiMethodId(33),
+  Implemented,
+  read, write,
+  Description("Write EC command with one byte")
+  ] void WriteEcCommand_1 (
+    [in, Description("EC command data1")] uint8 Data_1
+    );	  
+  // Write EC command two bytes
+  [WmiMethodId(34),
+  Implemented,
+  read, write,
+  Description("Write EC command with two bytes")
+  ] void WriteEcCommand_2 (
+    [in, Description("EC command data 1")] uint8 Data_1,
+    [in, Description("EC command data 2")] uint8 Data_2
+    );	  
+
+  // system trasition status
+  [WmiMethodId(35),
+  Implemented,
+  read, write,
+  Description("Get transition status for %errorlevel%")
+  ] void GetTransitionStatus ([out, Description("I2C bus tansition stauts")] uint32 Status);	  
+
+};
+
+[WMI,
+ Dynamic,
+ Provider("WmiProv"),
+ Locale("MS\\0x409"),
+ Description("Class used to operate methods on a string"),
+ guid("{e1c4382e-1606-4443-8693-e90e8089b56c}")
+]
+class QUANTA_MFG_DATA_STRING
+{
+	
+  [key, read]
+   string InstanceName;
+  [read] boolean Active;   
+	
+
+  // SMBIOS Type2 "Serial Number"
+  // -RACSN
+	[WmiMethodId(1),
+     Implemented,
+     read, write,
+		Description("Get Type2 Serial Number")
+		] void GetSmbiosType2SerialNumber ([out, Description("Type2 Serial Number")] string Data);			
+		
+  // -WACSN
+	[WmiMethodId(2),
+     Implemented,
+     read, write,
+		Description("Set Type2 Serial Number")
+	] void SetSmbiosType2SerialNumber ([in, Description("Type2 Serial Number")] string Data);	  
+  
+  // SMBIOS Type1 "Serial Number"
+  // -RSN
+	[WmiMethodId(3),
+		Implemented,
+     read, write,
+		Description("Get SMBIOS Type1 Serial Number")
+		] void GetSmbiosType1SerialNumber ([out, Description("Type2 Serial Number")] string Data);			
+		
+  // -WSN
+	[WmiMethodId(4),
+		Implemented,
+     read, write,
+		Description("Set Type1 Serial Number")
+	] void SetSmbiosType1SerialNumber ([in, Description("Type2 Serial Number")] string idx);	  
+  
+  
+  // Asset Tag
+  // -RAT
+	[WmiMethodId(5),
+		Implemented,
+     read, write,
+		Description("Get Asset Tag")
+		] void GetAssetTag ([out, Description("Asset Tag")] string Data);			
+		
+  // -WAT
+	[WmiMethodId(6),
+		Implemented,
+     read, write,
+		Description("Set Asset Tag")
+	] void SetAssetTag ([in, Description("Asset Tag")] string idx);	  
+  
+  // Manufacture Name
+  // -RMN
+  [WmiMethodId(7),
+    Implemented,
+    read, write,
+    Description("Get Manufacture Name")
+  ] void GetManufacureName ([out, Description("Manufacture Name")] string Data);			
+		
+  // -WMN
+  [WmiMethodId(8),
+    Implemented,
+    read, write,
+    Description("Set Manufacture Name")
+  ] void SetManufacureName ([in, Description("Manufacture Name")] string idx);	  
+  
+
+  // UUID
+  // -RUU     // application 16->32
+  [WmiMethodId(9),
+  Implemented,
+  read, write,
+  Description("depreicated this function @2020 Get UUID")
+  ] void GetUUID ([out, Description("UUID")] string Data);			
+
+  // -WUU
+  [WmiMethodId(10),
+  Implemented,
+  read, write,
+  Description("This item is depricated already! sinc 2020/09/02, do not reference here!")
+  ] void UUIDEmptyMethod ([in, Description("depricated function and data")] string idx);	  
+
+  // -RQTSN
+  // Quanta M/B Serial Number
+  [WmiMethodId(11),
+  Implemented,
+  read, write,
+  Description("Get Quanta M/B Serial Number")
+  ] void GetQuantaMBSerianNumber ([out, Description("Quanta M/B Serial Number")] string Data);			
+		
+  // -WQTSN
+  [WmiMethodId(12),
+  Implemented,
+  read, write,
+  Description("Set Quanta M/B Serial Number")
+  ] void SetQuantaMBSerianNumber ([in, Description("Quanta M/B Serial Number")] string idx);	  
+  
+ 
+
+  // Ref Marketing Name of BOM (30 bytes)
+  // -RMNB
+  [WmiMethodId(13),
+  Implemented,
+  read, write,
+  Description("Get Ref Marketing Name of BOM (30 bytes)")
+  ] void GetMarketingNameOfBom ([out, Description("Quanta M/B Serial Number")] string Data);			
+	// -WMNB	
+  [WmiMethodId(14),
+  Implemented,
+  read, write,
+  Description("Set Quanta M/B Serial Number")
+  ] void SetMarketingNameOfBom ([in, Description("Quanta M/B Serial Number")] string idx);	  
+  
+
+  // Shipping mode long-run
+  // -RSMLR
+	[WmiMethodId(15),
+  Implemented,
+  read, write,
+  Description("Get Shipping mode long-run (2bytes)")
+  ] void GetShippingModeLongRun ([out, Description("Shipping mode long-run (2bytes)")] string Data);			
+		
+  // -WSMLR
+  [WmiMethodId(16),
+  Implemented,
+  read, write,
+  Description("Set Shipping mode long-run (2bytes)")
+  ] void SetShippingModeLongRun ([in, Description("Shipping mode long-run (2bytes)")] string idx);	  
+  
+  // Product Name (32 bytes)
+  // -RPN
+  [WmiMethodId(17),
+  Implemented,
+  read, write,
+  Description("Get Product Name (32 bytes)")
+  ] void GetProductName ([out, Description("Product Name (32 bytes)")] string Data);			
+		
+  // -WPN
+  [WmiMethodId(18),
+  Implemented,
+  read, write,
+  Description("Set Product Name (32 bytes)")
+  ] void SetProductName ([in, Description("Product Name (32 bytes)")] string idx);	  
+  
+
+  [WmiMethodId(23),
+  Implemented,
+  read, write,
+  Description("Get transition status for %errorlevel%")
+  ] void GetTransitionStatus ([out, Description("I2C bus tansition stauts")] uint8 Status);	  
+
+};
+
+
